@@ -35,5 +35,17 @@ namespace Unity.VRTemplate
             m_StepList[m_CurrentStepIndex].stepObject.SetActive(true);
             m_StepButtonTextField.text = m_StepList[m_CurrentStepIndex].buttonText;
         }
+
+        public void Previous()
+        {
+            m_StepList[m_CurrentStepIndex].stepObject.SetActive(false);
+            m_CurrentStepIndex--;
+            if (m_CurrentStepIndex < 0)
+            {
+                m_CurrentStepIndex = m_StepList.Count - 1;
+            }
+            m_StepList[m_CurrentStepIndex].stepObject.SetActive(true);
+            m_StepButtonTextField.text = m_StepList[m_CurrentStepIndex].buttonText;
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GestureEventProcessor : MonoBehaviour
 {
-    public float simmilarityThreshold = 0.5f;
+    public float simmilarityThreshold = 0.3f;
     public UnityEvent m_LWritstFlickEvent;
     public UnityEvent m_RWritstFlickEvent;
 
@@ -31,11 +31,22 @@ public class GestureEventProcessor : MonoBehaviour
             return;
         }
 
+        Debug.Log($"gesture ID: {gestureCompletionData.gestureID} // gesture Name: {gestureCompletionData.gestureName} // simmilarity: {gestureCompletionData.similarity}");
+
         if(gestureCompletionData.similarity >= simmilarityThreshold)
         {
             //// Test gestureID to determine which gesture is being detected.
             /// if(gestureID = x){ m_LWristFlick.invoke() }
             /// ...
+            if (gestureCompletionData.gestureID == 0) {
+                Debug.Log("invoking 0");
+                m_RWritstFlickEvent.Invoke(); 
+            }
+
+            if (gestureCompletionData.gestureID == 1) {
+                Debug.Log("invoking 1");
+                m_LWritstFlickEvent.Invoke(); 
+            }
         }
     }
 
